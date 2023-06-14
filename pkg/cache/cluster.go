@@ -718,7 +718,8 @@ func (c *clusterCache) sync() error {
 		return err
 	}
 	c.serverVersion = version
-	apiResources, err := c.kubectl.GetAPIResources(config, false, NewNoopSettings())
+
+	apiResources, err := c.kubectl.GetAPIResources(config, false, c.settings.ResourcesFilter)
 	if err != nil {
 		return err
 	}
